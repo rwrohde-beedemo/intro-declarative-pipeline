@@ -1,12 +1,14 @@
 pipeline {
-  agent any
+  agent {
+    label 'jdk8'
+  }
   stages {
     stage('Say Hello') {
       steps {
         echo "Hello ${params.Name}!"
+        sh 'java -version'
         echo "${TEST_USER_USR}"
         echo "${TEST_USER_PSW}"
-        sh 'java -version'
       }
     }
     stage('Testing') {
@@ -15,9 +17,6 @@ pipeline {
         stage('Java 8') {
           agent {
             label 'jdk8'
-          }
-          options {
-            timeout(time: 30, unit: 'SECONDS')
           }
           steps {
             sh 'java -version'
@@ -28,9 +27,6 @@ pipeline {
           agent {
             label 'jdk9'
           }
-          options {
-            timeout(time: 30, unit: 'SECONDS')
-          }
           steps {
             sh 'java -version'
             sleep(time: 20, unit: 'SECONDS')
@@ -40,7 +36,7 @@ pipeline {
     }
   }
   environment {
-    MY_NAME = 'Bill'
+    MY_NAME = 'Mary'
     TEST_USER = credentials('test-user')
   }
   post {
