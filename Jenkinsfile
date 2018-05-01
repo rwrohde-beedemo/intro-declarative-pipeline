@@ -16,6 +16,9 @@ pipeline {
           agent {
             label 'jdk8'
           }
+          options {
+            timeout(time: 10, unit: 'SECONDS')
+          }
           steps {
             sh 'java -version'
             sleep(time: 10, unit: 'SECONDS')
@@ -24,6 +27,9 @@ pipeline {
         stage('Java 9') {
           agent {
             label 'jdk9'
+          }
+          options {
+            timeout(time: 10, unit: 'SECONDS')
           }
           steps {
             sh 'java -version'
