@@ -17,7 +17,7 @@ pipeline {
             label 'jdk8'
           }
           options {
-            timeout(time: 10, unit: 'SECONDS')
+            timeout(time: 30, unit: 'SECONDS')
           }
           steps {
             sh 'java -version'
@@ -29,7 +29,7 @@ pipeline {
             label 'jdk9'
           }
           options {
-            timeout(time: 10, unit: 'SECONDS')
+            timeout(time: 30, unit: 'SECONDS')
           }
           steps {
             sh 'java -version'
